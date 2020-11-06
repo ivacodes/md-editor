@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import marked from "marked";
+import DOMPurify from "dompurify";
+import { Container, Row, Col } from "react-bootstrap";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { sampleText } from "./Sample";
+
+export default class App extends Component {
+  state = {
+    text: sampleText,
+  };
+
+  handleChange = (e) => {
+    const text = e.target.value;
+    this.setState({ text });
+  };
+
+  renderText = (text) => {
+    var clean = DOMPurify.sanitize(text);
+    const __html = marked(clean);
+    return { __html };
+  };
+
+  render() {
+    const { text } = this.state;
+    return (
+      <Container>
+        <Row>
+          <Col xs={6}>
+            <textarea
+              rows='35'
+              onChange={this.handleChange}
+              value={text}
+            ></textarea>
+          </Col>
+          <Col xs={6}>
+            <div dangerouslySetInnerHTML={this.renderText(text)} />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
-
-export default App;
