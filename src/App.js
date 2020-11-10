@@ -3,6 +3,7 @@ import "./App.css";
 import marked from "marked";
 import DOMPurify from "dompurify";
 import { Container, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { sampleText } from "./Sample";
 
