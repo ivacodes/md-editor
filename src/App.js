@@ -26,13 +26,19 @@ export default class App extends Component {
   render() {
     const { text } = this.state;
     return (
-      <Container>
+      <Container fluid>
+        <Row>
+          <Col>
+            <h1>Markdown editor</h1>
+          </Col>
+        </Row>
         <Row>
           <Col xs={6}>
             <textarea
               rows='35'
               onChange={this.handleChange}
               value={text}
+              style={{ width: "100%" }}
             ></textarea>
           </Col>
           <Col xs={6}>
