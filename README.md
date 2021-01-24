@@ -7,3 +7,7 @@
 - React
 - React Bootstrap
 - "marked" library
+
+npm install
+
+npm start
